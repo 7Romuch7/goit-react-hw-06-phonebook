@@ -40,7 +40,7 @@ class ContactForm extends Component {
   handleSubmit = event => {
       event.preventDefault();
 
-      const double = this.props.contacts.filter(
+      const double = this.props.contacts.items.filter(
         contact => contact.name === event.target.elements[0].value,
         console.log(this.props.contacts)
     );
@@ -54,7 +54,7 @@ class ContactForm extends Component {
       }, 2500);
     }
       this.clear();
-    this.props.onSubmit(this.state);
+    this.props.onSubmit(this.state.name, this.state.number);
   }
   
     
@@ -104,10 +104,10 @@ class ContactForm extends Component {
     )}
 }
 
-const mapStateToProps = state => ({ contacts: state.contacts.items });
+const mapStateToProps = state => ({ contacts: state.contacts});
 
 const mapDispatchToProps = dispatch => ({
-  onSubmit: value => dispatch(phonebookActions.addContact(value)),
+  onSubmit: (name, number) => { dispatch(phonebookActions.addContact(name, number)) },
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);

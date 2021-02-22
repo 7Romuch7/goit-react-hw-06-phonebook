@@ -5,12 +5,9 @@ import phoneReducer from './phonebook/phonebook-reducer';
 
 
 const rootReducer = combineReducers({
-  phonebook: phoneReducer
+  contacts: phoneReducer,
 });
 
 const store = createStore(rootReducer, composeWithDevTools());
-/* export default combineReducers({
-    phoneReducer,
-    filter,
-}); */
+
 export default store;
