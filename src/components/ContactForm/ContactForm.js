@@ -22,20 +22,6 @@ class ContactForm extends Component {
     const { name, value } = currentTarget;
     this.setState({ [name]: value });
   };
-
-  /* addContact = data => {
-    const contact = {
-      id:  this.contactUserId,
-      name: data.name,
-      number: data.number,
-    };
-
-    this.setState(prevState => {
-      return {
-        contacts: [...prevState.contacts, contact],
-      };
-    });
-  }; */
     
   handleSubmit = event => {
       event.preventDefault();

@@ -3,8 +3,10 @@ import phonebookActions from '../../redux/phonebook/phonebook-actions';
 import PropTypes from 'prop-types';
 import styles from './Filter.module.css';
 
+
 const Filter = ({ value, onChangeFilter }) => {
   return (
+    
     <div className={styles.containerFilter}>
       <label className={styles.titleFilter}>
         Find contact by name
@@ -17,6 +19,7 @@ const Filter = ({ value, onChangeFilter }) => {
         />
       </label>
       </div>
+      
   );
 }
 

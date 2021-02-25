@@ -5,19 +5,21 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import ContactListItem from '../ContactListItem';
 import styles from './ContactList.module.css';
 
-const ContactList = ({ contacts, onRemoveContact }) => (
-  <TransitionGroup component="ul" className={styles.listContacts}>
-    {contacts.map(({ id, name, number }) => (
-        <CSSTransition key={id} timeout={250} classNames={styles}>
-          <ContactListItem
-            id={id}  
-            name={name}
-            number={number}
-            onRemove={() => onRemoveContact(id)}
-            />
-        </CSSTransition>
-    ))}
-  </TransitionGroup>
+const ContactList = ({ contacts, onRemoveContact}) => (
+  <CSSTransition in={contacts.length > 0} classNames={styles.contactsFilter} timeout={250} unmountOnExit>
+    <TransitionGroup component="ul" className={styles.listContacts}>
+      {contacts.map(({ id, name, number }) => (
+          <CSSTransition key={id} timeout={250} classNames={styles}>
+            <ContactListItem
+              id={id}  
+              name={name}
+              number={number}
+              onRemove={() => onRemoveContact(id)}
+              />
+          </CSSTransition>
+      ))}
+      </TransitionGroup>
+    </CSSTransition>
 );
 
 ContactList.propTypes = {
@@ -32,9 +34,9 @@ const filteredName = ( contacts, filter ) => {
     );
   };
 
-const mapStateToProps = state => {
+const mapStateToProps = ({contacts: {items, filter}}) => {
   return {
-    contacts: filteredName(state.contacts.items, state.contacts.filter)
+    contacts: filteredName(items, filter)
   }
 }
 
