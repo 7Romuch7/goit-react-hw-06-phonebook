@@ -18,7 +18,6 @@ class ContactForm extends Component {
   numberInputId = shortid.generate();
     
   handleChange = ({currentTarget}) => {
-    console.log(currentTarget);
     const { name, value } = currentTarget;
     this.setState({ [name]: value });
   };
@@ -28,7 +27,6 @@ class ContactForm extends Component {
 
       const double = this.props.contacts.items.filter(
         contact => contact.name === event.target.elements[0].value,
-        console.log(this.props.contacts)
     );
 
     if (double.length) {

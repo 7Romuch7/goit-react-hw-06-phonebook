@@ -32,13 +32,13 @@ export default combineReducers({
 
 /* ------------ Redux Toolkit --------------- */
 
-import { combineReducers } from "redux";
 import { createReducer } from '@reduxjs/toolkit';
+import { combineReducers } from "redux";
 import actions from '../phonebook/phonebook-actions';
 
 const items = createReducer([], {
     [actions.addContact]: (state, {payload}) => [payload, ...state],
-    [actions.removeContact]: (state, {payload}) => [state.filter(({ id }) => id !== payload)]
+    [actions.removeContact]: (state, {payload}) => state.filter(({ id }) => id !== payload)
 })
 
 const filter = createReducer('', {

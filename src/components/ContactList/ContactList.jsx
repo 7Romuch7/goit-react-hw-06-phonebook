@@ -5,9 +5,9 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import ContactListItem from '../ContactListItem';
 import styles from './ContactList.module.css';
 
-const ContactList = ({ contacts, onRemoveContact}) => (
+const ContactList = ({ contacts, onRemoveContact }) => (
   <CSSTransition in={contacts.length > 0} classNames={styles.contactsFilter} timeout={250} unmountOnExit>
-    <TransitionGroup component="ul" className={styles.listContacts}>
+  <TransitionGroup component="ul" className={styles.listContacts}>
       {contacts.map(({ id, name, number }) => (
           <CSSTransition key={id} timeout={250} classNames={styles}>
             <ContactListItem
@@ -18,7 +18,7 @@ const ContactList = ({ contacts, onRemoveContact}) => (
               />
           </CSSTransition>
       ))}
-      </TransitionGroup>
+    </TransitionGroup>
     </CSSTransition>
 );
 
@@ -27,16 +27,16 @@ ContactList.propTypes = {
   onRemoveContact: PropTypes.func,
 };
 
-const filteredName = ( contacts, filter ) => {
+const getVisibleContacts  = ( allContacts, filter ) => {
 
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(filter.toLowerCase()),
+    return allContacts.filter(contact =>
+      contact.name.toLowerCase().includes(filter.toLowerCase().trim()),
     );
   };
 
 const mapStateToProps = ({contacts: {items, filter}}) => {
   return {
-    contacts: filteredName(items, filter)
+    contacts: getVisibleContacts(items, filter)
   }
 }
 

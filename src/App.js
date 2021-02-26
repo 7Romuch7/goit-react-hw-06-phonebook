@@ -7,7 +7,6 @@ import Filter from './components/Filter';
 
 class App extends Component {
 
-
   render() {
     return (
       <div className="container" >
